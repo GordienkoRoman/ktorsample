@@ -1,0 +1,26 @@
+FROM openjdk:11-jre-slim
+
+# Set the working directory for your app
+WORKDIR /usr/src/app
+
+# Copy build.gradle and settings.gradle files
+COPY build.gradle settings.gradle ./
+
+# Copy the gradle wrapper
+COPY gradlew ./
+COPY gradle ./gradle
+
+# Copy the source code
+COPY src ./src
+
+# Build the application
+RUN ./gradlew build
+
+# Copy the jar file from the build directory to the working directory
+COPY build/libs/NtiTestApp-1.0.0 app.jar
+
+# Required port to run the application (you might change this)
+EXPOSE 8080
+
+# Run the JAR file using the java command
+CMD ["java", "-jar", "app.jar"]
