@@ -4,7 +4,7 @@ FROM openjdk:11-jre-slim
 WORKDIR /app
 
 # Copy the build artifacts from the host to the container
-COPY build/libs/com.example.ktor-sample-all
+COPY build/libs/com.example.ktor-sample-all.jar app.jar
 
 # Expose the port Ktor runs on
 EXPOSE 8080
